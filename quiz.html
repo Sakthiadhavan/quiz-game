@@ -107,7 +107,7 @@
 <script>
     
     
-    
+    correct=0;
     
     
     questions=[
@@ -240,6 +240,11 @@
                 nnn=document.querySelector(".button");
                 nnn.innerHTML="submit";
                 nnn.classList.add("submit");
+                document.querySelector(".submit").addEventListener("click",()=>{
+                    document.querySelector(".q").innerHTML=`Score:${correct}/${questions.length-1}`;
+
+                }
+                )
             }
 
     }
@@ -262,6 +267,7 @@
                     j.style.backgroundColor="green";
                     j.style.color="white";
                     document.body.style.backgroundColor="green";
+                    correct++;
 
                     no=1;
                 }
@@ -291,6 +297,9 @@
            
         
     }
+
+
+    
 
 
 
