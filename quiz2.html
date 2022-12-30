@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: rgb(114, 60, 114);
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        align-items: center;
+        height: 100vh;
+
+    }
+    
+    .quiz{
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: black 1px 1px 19px;
+        padding: 10px 20px;
+        flex-wrap: wrap;
+        display: flex;
+        margin: 10px;
+    
+        align-items: center;
+        position: relative;
+
+
+    }
+    .quiz:hover .start{
+        background-color: yellow;
+    }
+
+    .question {
+        font-family: sans-serif;
+        text-transform: capitalize;
+        text-align: center;
+    }
+
+    .option {
+        border: 1px solid salmon;
+        
+        min-width: 80px;
+        max-width: 250px;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-top: 20px;
+        text-align: center;
+        color: salmon;
+        border-radius: 4px;
+        padding: 6px;
+        transition: .3s;
+    
+       
+
+    }
+
+    .option:hover {
+        background-color: salmon;
+        border: white 1s white;
+        cursor: pointer;
+        color: white;
+
+    }
+
+    ::selection {
+        background-color: slategray;
+    }
+
+    .but {
+        display: flex;
+        justify-content: center;
+
+
+        align-items: center;
+
+    }
+
+    .button {
+        border:  2px solid black;
+        border-radius: 5px;
+        margin-top: 10px;
+
+        width: 70px;
+        height: 40px;
+        display: flex;
+        padding: 7px;
+        transition: 1s;
+        
+
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .button:hover{
+        background-color: black;
+        color: white;
+        width: 80px;
+        justify-content: flex-start;
+
+
+    }
+   
+    .button:hover::after{
+        content: '>>';
+
+        animation:animate 2s infinite;
+    }
+    @keyframes animate{
+        100%{
+            transform: translateX(15px);
+
+        }
+    }
+    .submit{
+        background-color: cadetblue;!important;
+        color: white;
+    }
+    .submit:hover{
+        background-color: cadetblue;!important;
+        color: white;
+    }
+    
+</style>
+
+<body>
+<div class="quiz">
+    <div class="start">Let's Start 😋</div>
+    <div class="q quiz1">
+    </div>
+    
+</body>
+<script>
+    
+    
+    correct=0;
+    
+    
+    questions=[
+        {},
+        {
+            q:"In which year of First World War Germany declared war on Russia and France?",
+            answers:["1914","1915","1916","1917"],
+            da:0,
+        },
+        {
+            q:"ICAO stands for",
+            answers:["International Civil Aviation Organization","Indian Corporation of Agriculture Organization","Institute of Company of Accounts Organization","None of the above"],
+            da:0,
+        },
+        {
+            q:"Siddarth sriram",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"sakthi adhavan",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"sachin",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"naveen",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"nathin",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"suresh",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"navin",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"JEEVAGAN",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        {
+            q:"DEEPAK",
+            answers:[1,2,3,4],
+            da:3,
+        },
+        
+    ];
+    
+    let arr=[];
+    for(i=1;i<questions.length;i++)
+    {
+       arr.push(i); 
+       
+       
+    }
+    
+    
+    res=[];
+    work=0;
+
+    while(work!=(arr.length)){
+        r=Math.floor(Math.random()*(questions.length)+1);
+         
+     for(i=0;i<arr.length;i++)
+     {
+        
+        if(arr[i]==r && arr[i]!=0)
+        {
+            
+            arr[i]=0;
+            res.push(r);
+        work++;
+        
+        }
+     }    
+    
+    }
+    
+    
+    
+   
+    
+    r=0;
+    ans=0;
+    document.querySelector(".start").addEventListener("click",st);
+    
+    q=document.querySelector(".q");
+    function st()
+    {
+        document.querySelector(".start").innerHTML="";
+        display();
+    };
+    function display()
+    {
+     
+        q.innerHTML=` <h2 class="question">${questions[res[r]].q}</h2>
+            <h4 class="option option1">${questions[res[r]].answers[0]}</h4>
+            <h4 class="option option2">${questions[res[r]].answers[1]}</h4>
+            <h4 class="option option3">${questions[res[r]].answers[2]}</h4>
+            <h4 class="option option4">${questions[res[r]].answers[3]}</h4>
+            <div class="but">
+                <h4 class="button">Next</h4>
+
+
+            </div>`;
+            listen(r);
+        
+            
+            
+          
+            
+            
+    };
+    function display2(r){
+        document.body.style.backgroundColor="rgb(114, 60, 114)";
+
+        q.innerHTML=` <h2 class="question">${questions[res[r]].q}</h2>
+            <h4 class="option option1">${questions[res[r]].answers[0]}</h4>
+            <h4 class="option option2">${questions[res[r]].answers[1]}</h4>
+            <h4 class="option option3">${questions[res[r]].answers[2]}</h4>
+            <h4 class="option option4">${questions[res[r]].answers[3]}</h4>
+            <div class="but">
+                <h4 class="button">Next</h4>
+            </div>`;
+            listen(r);
+        
+            if(ans==questions.length-3)
+            {
+                nnn=document.querySelector(".button");
+                nnn.innerHTML="submit";
+                nnn.classList.add("submit");
+                document.querySelector(".submit").addEventListener("click",()=>{
+                    document.querySelector(".q").innerHTML=`Score:${correct}/${questions.length-1}`;
+
+                }
+                )
+            }
+
+    }
+    
+    function listen(r)
+    {
+        
+      count=-1;
+      
+      
+        ai=document.querySelectorAll(".option");
+        ai.forEach((i,index)=>{
+            i.addEventListener("click",(e)=>{
+                j=e.target;
+                count++;
+                if(count==0)
+                {
+                if(index==questions[res[r]].da)
+                {
+                    j.style.backgroundColor="green";
+                    j.style.color="white";
+                    document.body.style.backgroundColor="green";
+                    correct++;
+
+                    no=1;
+                   
+                }
+                else{
+                    j.style.backgroundColor="red";
+                    j.style.color="white";
+                    document.body.style.backgroundColor="red";
+                    
+                    no=1;
+                    
+                    
+                }
+            }
+            })
+            
+
+        })
+        document.querySelector(".button").addEventListener("click",()=>{
+                document.querySelector(".q").innerHTML="";
+                r++;
+                display2(r);
+                ans++;
+                
+               
+            
+        })
+           
+        
+    }
+
+
+    
+
+
+
+    
+   
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    
+  
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+
+
+
+
+</script>
+
+</html>
